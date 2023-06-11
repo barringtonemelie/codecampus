@@ -1,0 +1,21 @@
+<h2>Learning paths</h2>
+
+<div class="item-grid">
+    {{#each learningPaths}}
+        <article class="item">
+            <div>
+                <h3><b>{{title}}</b></h3>
+                <p><i>{{description}}</i></p>
+                <p><i>Estimated time: {{estimatedHours}} hours</i></p>
+
+                <ol>
+                    {{#each steps}}
+                        <li>{{this}}</li>
+                    {{/each}}
+                </ol>
+            </div>
+
+            {{!-- Buttons to be placed here --}}
+        </article>
+    {{/each}}
+</div>
