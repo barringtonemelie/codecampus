@@ -16,10 +16,15 @@
 
     <nav>
         <a href="/">Start</a>
-
+        <a href="/login">Login</a>
     </nav>
 
     <main>
+
+        {{#if messages.info}}
+            <p>{{messages.info}}</p>
+        {{/if}}
+
         {{{body}}}
     </main>
 
