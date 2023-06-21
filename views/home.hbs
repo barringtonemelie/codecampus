@@ -7,14 +7,14 @@
                 <h3><b>{{title}}</b></h3>
                 <p><i>{{description}}</i></p>
                 <p><i>Estimated time: {{estimatedHours}} hours</i></p>
-
-                <ol>
-                    {{#each steps}}
-                        <li>{{this}}</li>
-                    {{/each}}
-                </ol>
             </div>
-
+            {{#if ../user}}
+            <form action="/profile/start-path/{{_id}}" method="post">
+                <button type="submit" class="btn">Start path</button>
+            </form>
+            {{else}}
+            <a href="/login">Log in to start path</a>
+            {{/if}}
             {{!-- Buttons to be placed here --}}
         </article>
     {{/each}}

@@ -1,0 +1,34 @@
+<h2>Welcome {{user.username}}</h2>
+
+{{#if paths}}
+    <p>
+        You have started the following learning paths:
+    </p>
+    {{#each paths}}
+
+        <div class="path">
+            <div>
+                <h3>{{learningPath.title}}</h3>
+            
+                <p>{{learningPath.description}}</p>
+                
+                <ol>
+                    {{#each learningPath.steps}}
+                        
+                            <li>
+                                <h4>
+                                    <input type="checkbox"  class="complete-step" data-step-id="{{_id}}" data-learning-path-id="{{../_id}}">
+                                    {{title}}
+                                </h4>
+                                <p><i>{{description}}</i></p>
+                                <p>Link: <a href="{{link}}" target="_blank">{{link}}</a></p>
+                            </li>
+                    
+                    {{/each}}
+                </ol>
+
+            </div>
+        </div>
+
+    {{/each}}
+{{/if}}

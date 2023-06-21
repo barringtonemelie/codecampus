@@ -7,11 +7,12 @@ var logger = require("morgan");
 const exphbs = require("express-handlebars");
 const flash = require('express-flash')
 const session = require('express-session');
+const { passport, setUser } = require("./utils/passport");
+
 require("./config/mongoose");
 require("./config/sequelize");
 
-var homeRouter = require("./routes/web/home-web-router");
-var loginRouter = require("./routes/web/login-web-router");
+
 
 
 const app = express()
@@ -22,15 +23,36 @@ app.set("view engine", "hbs");
 
 
 app.use(cookieParser());
-app.use(session({ cookie: { maxAge: 60000 }, resave: false, saveUninitialized: true, secret: 'keyboard cat' }));
+app.use(
+  session({
+    cookie: { secure: false },
+    resave: false,
+    saveUninitialized: true,
+    secret: "keyboard cat",
+  })
+);
+app.use(passport.initialize());
+app.use(passport.session());
+app.use(setUser);
 app.use(flash()); 
 app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, "public")));
 
-app.use("/", homeRouter);
-app.use("/login", loginRouter);
+app.use((function (req, res, next) {
+  req.flash = (type, message) => {
+    req.session.flash = { type, message };
+  }
+
+  res.locals.flash = req.session.flash;
+  delete req.session.flash;
+  next();
+}));
+
+app.use("/", require("./routes/web/home-web-router"));
+app.use("/login", require("./routes/web/login-web-router"));
+app.use("/profile", require("./routes/web/profile-web-router"));
 
 app.engine(
   "hbs",
