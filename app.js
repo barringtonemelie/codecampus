@@ -8,6 +8,7 @@ const exphbs = require("express-handlebars");
 const flash = require('express-flash')
 const session = require('express-session');
 const { passport, setUser } = require("./utils/passport");
+const cors = require("cors");
 
 require("./config/mongoose");
 require("./config/sequelize");
@@ -21,6 +22,7 @@ const app = express()
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "hbs");
 
+app.use(cors());
 
 app.use(cookieParser());
 app.use(
@@ -53,6 +55,7 @@ app.use((function (req, res, next) {
 app.use("/", require("./routes/web/home-web-router"));
 app.use("/login", require("./routes/web/login-web-router"));
 app.use("/profile", require("./routes/web/profile-web-router"));
+app.use("/api/profile", require("./routes/api/profile-api-router"));
 
 app.engine(
   "hbs",

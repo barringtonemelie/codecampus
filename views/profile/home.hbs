@@ -17,7 +17,11 @@
                         
                             <li>
                                 <h4>
-                                    <input type="checkbox"  class="complete-step" data-step-id="{{_id}}" data-learning-path-id="{{../_id}}">
+                                    {{#if done}}
+                                        <input type="checkbox" checked class="complete-step" data-step-id="{{_id}}" data-path-id="{{../_id}}" data-done="true">
+                                    {{else}}
+                                        <input type="checkbox" class="complete-step" data-step-id="{{_id}}" data-path-id="{{../_id}}" data-done="false">
+                                    {{/if}}
                                     {{title}}
                                 </h4>
                                 <p><i>{{description}}</i></p>

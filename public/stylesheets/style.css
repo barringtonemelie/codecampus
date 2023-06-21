@@ -146,6 +146,9 @@ span.close-flash:hover {
   opacity: 0.7;
 }
 
+
+
+
 /* -- Footer -- */
 
 footer {
@@ -202,4 +205,13 @@ div.solo-item{
 div.solo-item img{
   max-width: 420px;
   margin: 0 auto 15px;
+}
+
+/* -- Learning Paths -- */
+
+input.complete-step {
+  transform: scale(2);
+  margin: 0 10px; 
+  cursor: pointer;
+  accent-color: green;
 }
