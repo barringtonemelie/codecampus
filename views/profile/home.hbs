@@ -6,10 +6,16 @@
     </p>
     {{#each paths}}
 
-        <div class="path">
-            <div>
+        <div>
+            <div class="path">
                 <h3>{{learningPath.title}}</h3>
-            
+                <p>
+                    <b class="steps-count"></b>
+                    <b class="progress-percentage"></b>    
+                </p>
+                <div class="progress-bar-container">
+                    <div class="progress-bar"></div>
+                </div>
                 <p>{{learningPath.description}}</p>
                 
                 <ol>

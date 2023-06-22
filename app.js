@@ -55,6 +55,8 @@ app.use((function (req, res, next) {
 app.use("/", require("./routes/web/home-web-router"));
 app.use("/login", require("./routes/web/login-web-router"));
 app.use("/profile", require("./routes/web/profile-web-router"));
+app.use("/community", require("./routes/web/community-web-router"));
+app.use("/users", require("./routes/web/users-web-router"));
 app.use("/api/profile", require("./routes/api/profile-api-router"));
 
 app.engine(

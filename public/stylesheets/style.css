@@ -76,7 +76,15 @@ header h1 {
   color: white;
   font-size: 5em;
   text-shadow: 3px 3px 6px black;
+  text-align: center;
 }
+
+@media screen and (max-width: 1000px) {
+  header h1 {
+    font-size: 3em;
+  }
+}
+  
 
 
 /* -- Nav -- */
@@ -209,9 +217,50 @@ div.solo-item img{
 
 /* -- Learning Paths -- */
 
+.path {
+  width: 100%; 
+}
+
 input.complete-step {
   transform: scale(2);
   margin: 0 10px; 
   cursor: pointer;
   accent-color: green;
+}
+
+div.progress-bar-container {
+  width: 100%; 
+  height: 10px; 
+  border: 1px solid grey;
+}
+
+div.progress-bar {
+  background-color: green;
+  height: 100%;
+  width: 0%;
+  transition: width 0.5s ease-in-out;
+}
+
+/* -- Community -- */
+
+div.user {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+a.username {
+  font-weight: 700;
+  font-size: 2em;
+  margin-bottom: 5px;
+}
+
+/* -- Individual user profiles -- */
+
+h3.user-title {
+  width: 100%; 
+}
+
+p.progress-para {
+  width: 100%; 
 }

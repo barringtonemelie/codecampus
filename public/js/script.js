@@ -8,6 +8,13 @@ document.addEventListener('DOMContentLoaded', function () {
     if (completeStepCheckboxes) {
         completeStepCheckboxes.forEach(x => x.addEventListener('change', completeStep));
     }
+
+    const paths = document.querySelectorAll('.path');
+    if (paths) { 
+        paths.forEach(path => { 
+            calculateProgress(path);
+        });
+    }
 });
 
     
@@ -34,5 +41,30 @@ const completeStep = async (ev) => {
 
     if (response.status === 200) { 
         checkbox.dataset.done = !done;
+        calculateAllProgress();
     }
+}
+
+const calculateAllProgress = () => {
+    const paths = document.querySelectorAll('.path');
+    if (paths) { 
+        paths.forEach(path => { 
+            calculateProgress(path);
+        });
+    }
+}
+
+const calculateProgress = (path) => { 
+    const steps = path.querySelectorAll('input.complete-step');
+    const totalSteps = steps.length;
+    const completedSteps = path.querySelectorAll('input.complete-step[data-done="true"]').length;
+
+    const progress = path.querySelector('.progress-bar');
+    progress.style.width = `${(completedSteps / totalSteps) * 100}%`;
+
+    const stepsCount = path.querySelector('.steps-count');
+    stepsCount.innerText = `${completedSteps}/${totalSteps} |`;
+
+    const percentage = path.querySelector('.progress-percentage');
+    percentage.innerText = `${Math.round((completedSteps / totalSteps) * 100)}%`;
 }

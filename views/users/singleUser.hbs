@@ -1,0 +1,38 @@
+<h2>{{user.username}}'s learning paths</h2>
+
+{{#if learningPaths}}
+    
+    {{#each learningPaths}}
+        <div class="path">
+            <h3 class="user-title">{{learningPath.title}}</h3>
+            <p class="progress-para">
+                <b class="steps-count"></b>
+                <b class="progress-percentage"></b>
+            </p>
+            <div class="progress-bar-container">
+                <div class="progress-bar"></div>
+            </div>
+            <p>{{learningPath.description}}</p>
+
+            <ol>
+                {{#each learningPath.steps}}
+                    <li>
+                        <h4>
+                            {{#if done}}
+                                <input type="checkbox" disabled checked class="complete-step" data-step-id="{{_id}}" data-path-id="{{../_id}}" data-done="true">
+                            {{else}}
+                                <input type="checkbox" disabled class="complete-step" data-step-id="{{_id}}" data-path-id="{{../_id}}" data-done="false">
+                            {{/if}}
+                            {{title}}
+                        </h4>
+                        <p><i>{{description}}</i></p>
+                        <p>Link: <a href="{{link}}" target="_blank">{{link}}</a></p>
+                    </li>
+                {{/each}}
+            </ol>
+
+        </div>
+    {{/each}}
+{{else}}
+    <p>This user has not started any learning paths yet.</p>
+{{/if}}
