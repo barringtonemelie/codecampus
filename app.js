@@ -9,6 +9,9 @@ const flash = require('express-flash')
 const session = require('express-session');
 const { passport, setUser } = require("./utils/passport");
 const cors = require("cors");
+const { graphqlHTTP } = require("express-graphql");
+const schema = require("./graphql/schema");
+
 
 require("./config/mongoose");
 require("./config/sequelize");
@@ -66,6 +69,11 @@ app.engine(
     extname: ".hbs", // default ".handlebars"
   })
 );
+
+app.use('/graphql', graphqlHTTP({
+  schema,
+  graphiql: true
+}));
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

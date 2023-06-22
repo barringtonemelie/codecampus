@@ -89,5 +89,8 @@ function onListening() {
     : 'port ' + addr.port;
   debug('Listening on ' + bind);
 
+  console.log('===============================');
   console.log(`http://localhost:${port}`);
+  console.log(`http://localhost:${port}/graphql`);
+  console.log('===============================');
 }
